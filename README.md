@@ -24,14 +24,179 @@ STEP 6: Use zscore of to remove outliers
 ```
 import pandas as pd
 import numpy as np
-
 df = pd.read_csv("/content/SAMPLEIDS.csv")
+df
+```
+<img width="819" height="590" alt="image" src="https://github.com/user-attachments/assets/4a1163ed-aba3-4a86-bff1-660b6f8d34c5" />
 
 ```
-<img width="521" height="436" alt="image" src="https://github.com/user-attachments/assets/1d77b182-0ab6-48a9-9834-6687c658b473" />
+df.isnull()
 
-           
-           
+```
+<img width="826" height="655" alt="image" src="https://github.com/user-attachments/assets/0f374144-cb79-4e53-b86b-22c022b385e4" />
+
+```
+df.notnull()
+
+```
+<img width="676" height="656" alt="image" src="https://github.com/user-attachments/assets/324fd1d1-35ad-4657-bee3-5156d8939e6a" />
+
+```
+df.isna()
+```
+<img width="741" height="661" alt="image" src="https://github.com/user-attachments/assets/703035b9-63ef-4ab9-8a56-507344c69da6" />
+
+```
+df.shape
+```
+<img width="755" height="156" alt="image" src="https://github.com/user-attachments/assets/b3439469-df81-4d4f-a012-c180ea70c66a" />
+
+```
+df.describe()
+
+```
+<img width="1099" height="381" alt="image" src="https://github.com/user-attachments/assets/110007e8-f864-4fee-8c54-40651da27399" />
+
+```
+df.info()
+```
+<img width="969" height="815" alt="image" src="https://github.com/user-attachments/assets/5e8a83fd-0f1e-45ab-bb04-d7e492080bb4" />
+
+```
+df.head(3)
+```
+<img width="1544" height="251" alt="image" src="https://github.com/user-attachments/assets/e67dc7d7-020f-4499-8fe2-36b18457f914" />
+
+```
+df.tail(3)
+```
+<img width="1525" height="251" alt="image" src="https://github.com/user-attachments/assets/882e206b-d04a-4214-b8dd-2aa35a5eec5c" />
+
+```
+df.isnull().sum()
+
+```
+<img width="541" height="895" alt="image" src="https://github.com/user-attachments/assets/d756209e-5aee-4197-9bc6-3ca9ebdf7480" />
+
+```
+x=df.dropna(how='any')
+x
+```
+<img width="1196" height="567" alt="image" src="https://github.com/user-attachments/assets/5b16e78d-1dce-4c28-beb0-1c9cb269c37d" />
+
+```
+tot=df.dropna(subset=['TOTAL'],how='any')
+tot
+```
+<img width="1220" height="676" alt="image" src="https://github.com/user-attachments/assets/0a71038f-7ca5-42d8-b836-b55d78e4eb9a" />
+
+```
+tot=df.dropna(subset=['M1','M2','M3','M4'],how='any')
+tot
+```
+<img width="1202" height="556" alt="image" src="https://github.com/user-attachments/assets/76dbfd92-3684-49e9-adfa-13e6c9dd5ce4" />
+
+```
+df.isnull().sum()
+```
+<img width="631" height="896" alt="image" src="https://github.com/user-attachments/assets/332c824b-2523-4df7-869a-8946987ff141" />
+
+```
+df.drop_duplicates(inplace=True)
+```
+<img width="1147" height="689" alt="image" src="https://github.com/user-attachments/assets/310301e5-a64f-40e0-8b3f-018a70fbd7dc" />
+
+```
+import seaborn as sns
+sns.heatmap(df.isnull(),yticklabels=False,annot=True)
+```
+<img width="1091" height="832" alt="image" src="https://github.com/user-attachments/assets/21aa8563-dcb1-4bf4-83ab-42fbb565a96b" />
+
+```
+df.dropna(inplace=True)
+sns.heatmap(df.isnull(),yticklabels=False,annot=True)
+```
+<img width="1196" height="831" alt="image" src="https://github.com/user-attachments/assets/389caa51-f788-45e8-91b6-8997d27b6c54" />
+
+## Outlier Detection and Removal Using IQR
+
+```
+import pandas as pd
+import seaborn as sns
+import numpy as np
+age=[1,3,28,27,25,92,30,39,40,50,26,24,29,94]
+af=pd.DataFrame(age)
+af
+```
+<img width="1206" height="817" alt="image" src="https://github.com/user-attachments/assets/542a217e-41ae-44fc-8829-8d009a6938c1" />
+
+```
+sns.boxplot(data=af)
+```
+<img width="934" height="462" alt="image" src="https://github.com/user-attachments/assets/5528b6cd-a2fd-4c84-97f9-df334b574c0a" />
+
+```
+sns.scatterplot(data=af)
+```
+<img width="935" height="450" alt="image" src="https://github.com/user-attachments/assets/61f4f91e-1ca3-4d44-b761-b02253ea9f9d" />
+
+```
+data=[1,2,2,2,3,1,1,15,2,2,2,3,1,1,2]
+mean = np.mean(data)
+std = np.std(data)
+print('mean of the dataset is', mean)
+print('std. deviation is',std)
+```
+<img width="1730" height="214" alt="image" src="https://github.com/user-attachments/assets/4bd26af2-539a-4959-a49d-f42139ea7195" />
+
+```
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from scipy import stats
+data={'weight':[12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,63,
+                66,69,202,72,75,78,81,84,232,87,90,93,96,99,258]}
+df=pd.DataFrame(data)
+df
+```
+<img width="531" height="636" alt="image" src="https://github.com/user-attachments/assets/74a63514-ddaf-4e34-b458-0786cfd76578" />
+
+```
+z = np.abs(stats.zscore(df['weight']))
+print(df['weight'][z > 3])
+```
+<img width="641" height="105" alt="image" src="https://github.com/user-attachments/assets/81849156-9fe1-4c05-a4c7-4d55e23137e7" />
+
+```
+out = []
+
+def d_o(val):
+    ts = 3
+    m = np.mean(val)
+    sd = np.std(val)
+
+    for i in val:
+        z = (i - m) / sd
+        if np.abs(z) > ts:
+            out.append(i)
+
+    return out
+op=d_o(val)
+op
+```
+<img width="564" height="100" alt="image" src="https://github.com/user-attachments/assets/47a0c72b-3fa6-4bb9-b555-651ccfd63b02" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
