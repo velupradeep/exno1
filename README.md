@@ -22,9 +22,14 @@ STEP 6: Use zscore of to remove outliers
 
 # Coding and Output
 ```
-           <img width="875" height="730" alt="image" src="https://github.com/user-attachments/assets/272ba525-324a-4c1b-9c76-65e56bfdcade" />
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("/content/SAMPLEIDS.csv")
 
 ```
+<img width="521" height="436" alt="image" src="https://github.com/user-attachments/assets/1d77b182-0ab6-48a9-9834-6687c658b473" />
+
            
            
 
