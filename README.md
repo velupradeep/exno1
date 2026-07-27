@@ -141,6 +141,61 @@ sns.scatterplot(data=af)
 <img width="935" height="450" alt="image" src="https://github.com/user-attachments/assets/61f4f91e-1ca3-4d44-b761-b02253ea9f9d" />
 
 ```
+q1=af.quantile(0.25)
+q2=af.quantile(0.5)
+q3=af.quantile(0.75)
+iqr=q3-q1
+iqr
+```
+<img width="401" height="146" alt="image" src="https://github.com/user-attachments/assets/03a1a637-a463-497d-b404-93f1cb686650" />
+
+
+```
+Q1=np.percentile(af,25)
+Q3=np.percentile(af,75)
+IQR=Q3-Q1
+IQR
+```
+<img width="651" height="109" alt="image" src="https://github.com/user-attachments/assets/5a6d34b2-6a52-4d6e-b7ef-97347136ef88" />
+
+
+
+```
+print("Q1:",Q1)
+print("Q3:",Q3)
+print("IQR:",IQR)
+print("Lower bound:", lower_bound)
+print("Upper bound:", upper_bound)
+print("Outliers:",outliers)
+```
+<img width="1032" height="239" alt="image" src="https://github.com/user-attachments/assets/c43b1083-7a3f-4753-8f99-71f70e601532" />
+```
+af=af[((af>=lower_bound)&(af<=upper_bound))]
+af
+```
+<img width="566" height="701" alt="image" src="https://github.com/user-attachments/assets/8d6d14fb-f1a7-4c44-8d62-caa7d27cb9e5" />
+
+```
+af.dropna()
+```
+<img width="622" height="535" alt="image" src="https://github.com/user-attachments/assets/de77e0dd-74c0-477b-9482-118191f574b6" />
+
+```
+sns.boxplot(data=af)
+```
+<img width="1239" height="651" alt="image" src="https://github.com/user-attachments/assets/e7fa7897-8515-4771-9260-96b92bf07a9e" />
+
+```
+sns.scatterplot(data=af)
+```
+<img width="1171" height="641" alt="image" src="https://github.com/user-attachments/assets/bfff120d-9f95-424e-bb5c-9129469a17de" />
+
+
+
+
+
+
+```
 data=[1,2,2,2,3,1,1,15,2,2,2,3,1,1,2]
 mean = np.mean(data)
 std = np.std(data)
